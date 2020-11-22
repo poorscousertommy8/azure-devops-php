@@ -1,0 +1,10 @@
+{
+    "name": "info/azure-devops-php",
+    "authors": [
+        {
+            "name": "Manuel Seisl",
+            "email": "info@manuelseisl.at"
+        }
+    ],
+    "require": {}
+}
