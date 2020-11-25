@@ -6,7 +6,7 @@ variables:
   azureSubscription: '6e8bfc45-433e-47ed-822d-8c47d0d3484c'
   webAppName: 'azure-devops-php'
   vmImageName: 'Ubuntu 16.04'
-  environmentName: 'Production'
+  environmentName: 'Dev'
   rootFolder: $(System.DefaultWorkingDirectory)
 
 stages:
