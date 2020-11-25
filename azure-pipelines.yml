@@ -2,7 +2,6 @@ trigger:
   - master
 
 variables:
-  phpVersion: 7.2
   azureSubscription: 'azure-devops-php'
   webAppName: 'azure-devops-php'
   vmImageName: 'Ubuntu 16.04'
@@ -13,7 +12,7 @@ stages:
   - stage: Build
     displayName: 'Build'
     variables:
-      phpVersion: $(phpVersion)
+      phpVersion: '7.2'
     jobs:
       - job: BuildJob
         pool:
