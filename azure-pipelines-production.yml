@@ -11,4 +11,5 @@ jobs:
                           awsCredentials: 'aws-php'
                           regionName: 'eu-central-1'
                           bucketName: 'azure-devops-php'
-                          globExpressions: '**'
+                          sourceFolder: '$(Pipeline.Workspace)'
+                          globExpressions: '/**/*.zip'
