@@ -13,4 +13,4 @@ jobs:
                       inputs:
                           azureSubscription: 'azure-devops-php'
                           appName: 'azure-devops-php'
-                          package: $(System.DefaultWorkingDirectory)/**/*.zip
+                          package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
