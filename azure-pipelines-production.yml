@@ -6,10 +6,13 @@ jobs:
           runOnce:
               deploy:
                   steps:
-                      - task: S3Upload@1
+                      - task: CodeDeployDeployApplication@1
                         inputs:
                           awsCredentials: 'aws-php'
                           regionName: 'eu-central-1'
+                          applicationName: 'azure-devops-php'
+                          deploymentGroupName: 'azure-devops-php'
+                          deploymentRevisionSource: 'workspace'
+                          revisionBundle: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
                           bucketName: 'azure-devops-php'
-                          sourceFolder: '$(Pipeline.Workspace)'
-                          globExpressions: '/**/*.zip'
+                          fileExistsBehavior: 'OVERWRITE'
