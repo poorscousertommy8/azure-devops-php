@@ -2,21 +2,15 @@ trigger:
   - master
 
 variables:
-  azureSubscription: 'azure-devops-php'
-  webAppName: 'azure-devops-php'
-  vmImageName: 'Ubuntu 16.04'
-  environmentName: 'Development'
   rootFolder: $(System.DefaultWorkingDirectory)
 
 stages:
   - stage: Build
     displayName: 'Build'
-    variables:
-      phpVersion: '7.2'
     jobs:
       - job: BuildJob
         pool:
-          vmImage: $(vmImageName)
+          vmImage: 'Ubuntu 16.04'
         steps:
           - script: |
               sudo update-alternatives --set php /usr/bin/php$(phpVersion)
@@ -28,39 +22,33 @@ stages:
             workingDirectory: $(rootFolder)
             displayName: 'Use PHP version $(phpVersion)'
 
-          - script: composer install --no-interaction --prefer-dist
-            workingDirectory: $(rootFolder)
-            displayName: 'Composer install'
-
           - task: ArchiveFiles@2
             displayName: 'Archive files'
             inputs:
               rootFolderOrFile: '$(rootFolder)'
               includeRootFolder: false
               archiveType: zip
-              archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+              archiveFile: $(rootFolder)/$(Build.BuildId).zip
               replaceExistingArchive: true
 
           - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
             displayName: 'Upload package'
             artifact: drop
 
-  - stage: Deploy
-    displayName: 'Deploy'
-    dependsOn: Build
+  - stage: DeployDevelopment
+    displayName: 'Deploy to Development environment'
     condition: succeeded()
+    dependsOn: Build
     jobs:
-      - deployment: DeploymentJob
-        pool:
-          vmImage: $(vmImageName)
-        environment: $(environmentName)
-        strategy:
-          runOnce:
-            deploy:
-              steps:
-                - task: AzureWebApp@1
-                  displayName: 'Deploy Azure Web App : {{ webAppName }}'
-                  inputs:
-                    azureSubscription: $(azureSubscription)
-                    appName: $(webAppName)
-                    package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
+      - template: azure-pipelines-development.yml
+        parameters:
+          environment: 'Development'
+
+  - stage: DeployProduction
+    displayName: 'Deploy to Production environment'
+    condition: succeeded()
+    dependsOn: Build
+    jobs:
+      - template: azure-pipelines-production.yml
+        parameters:
+          environment: 'Production'

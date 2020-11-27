@@ -1,0 +1,14 @@
+jobs:
+    - deployment: Deploy
+      displayName: 'Deploy AWS'
+      environment: $
+      strategy:
+          runOnce:
+              deploy:
+                  steps:
+                      - task: AzureWebApp@1
+                        displayName: 'Deploy Azure Web App'
+                        inputs:
+                            azureSubscription: 'aws-php'
+                            appName: 'azure-devops-php'
+                            package: $(System.DefaultWorkingDirectory)/**/*.zip

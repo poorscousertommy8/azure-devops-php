@@ -1,0 +1,16 @@
+jobs:
+  - deployment: Deploy
+    displayName: 'Deploy Azure Web Service'
+    environment: $
+    pool:
+        vmImage: 'Ubuntu 16.04'
+    strategy:
+        runOnce:
+            deploy:
+                steps:
+                    - task: AzureWebApp@1
+                      displayName: 'Deploy Azure Web App'
+                      inputs:
+                          azureSubscription: 'azure-devops-php'
+                          appName: 'azure-devops-php'
+                          package: $(System.DefaultWorkingDirectory)/**/*.zip
