@@ -9,11 +9,10 @@ jobs:
                       - task: CodeDeployDeployApplication@1
                         displayName: 'Deploy AWS EC2'
                         inputs:
-                            awsCredentials: 'aws-php'
-                            regionName: 'eu-central-1'
-                            applicationName: 'azure-devops-php'
-                            deploymentGroupName: 'azure-devops-php'
-                            deploymentRevisionSource: 'workspace'
-                            revisionBundle: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
-                            bucketName: 'azure-devops-php'
-                            fileExistsBehavior: 'OVERWRITE'
+                          awsCredentials: 'aws-php'
+                          regionName: 'eu-central-1'
+                          applicationName: 'azure-devops-php'
+                          deploymentGroupName: 'azure-devops-php'
+                          deploymentRevisionSource: 's3'
+                          bucketName: 'azure-devops-php'
+                          fileExistsBehavior: 'OVERWRITE'
