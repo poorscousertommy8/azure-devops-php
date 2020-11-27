@@ -6,13 +6,9 @@ jobs:
           runOnce:
               deploy:
                   steps:
-                      - task: CodeDeployDeployApplication@1
-                        displayName: 'Deploy AWS EC2'
+                      - task: S3Upload@1
                         inputs:
                           awsCredentials: 'aws-php'
                           regionName: 'eu-central-1'
-                          applicationName: 'azure-devops-php'
-                          deploymentGroupName: 'azure-devops-php'
-                          deploymentRevisionSource: 's3'
                           bucketName: 'azure-devops-php'
-                          fileExistsBehavior: 'OVERWRITE'
+                          globExpressions: '**'
