@@ -1,2 +1,2 @@
 #!/bin/bash
-service httpd start
+/etc/init.d/nginx start
