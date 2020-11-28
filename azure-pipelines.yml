@@ -9,7 +9,7 @@ stages:
   - stage: Build
     displayName: 'Build'
     variables:
-      phpVersion: '7.2'
+      phpVersion: '7.4'
     jobs:
       - job: BuildJob
         pool:
@@ -31,10 +31,10 @@ stages:
               rootFolderOrFile: '$(rootFolder)'
               includeRootFolder: false
               archiveType: zip
-              archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+              archiveFile: $(Build.ArtifactStagingDirectory)/azure-devops-php.zip
               replaceExistingArchive: true
 
-          - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+          - upload: $(Build.ArtifactStagingDirectory)/azure-devops-php.zip
             displayName: 'Upload package'
             artifact: drop
 

@@ -13,6 +13,6 @@ jobs:
                           applicationName: 'azure-devops-php'
                           deploymentGroupName: 'azure-devops-php'
                           deploymentRevisionSource: 'workspace'
-                          revisionBundle: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
+                          revisionBundle: '$(Pipeline.Workspace)/drop/azure-devops-php.zip'
                           bucketName: 'azure-devops-php'
                           fileExistsBehavior: 'OVERWRITE'
