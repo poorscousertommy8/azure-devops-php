@@ -1,2 +1,2 @@
 #!/bin/bash
-if ! [ -x "$(command -v httpd)" ]; then yum install -y httpd24 >&2; exit 1; fi
+if ! [ -x "$(command -v apache2)" ]; then sudo apt-get install -y apache2; exit 1; fi
