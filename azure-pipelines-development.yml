@@ -1,6 +1,6 @@
 jobs:
   - deployment: Deploy
-    displayName: 'Deploy Azure Web Service'
+    displayName: 'Deploy to Azure App Service'
     environment: $
     pool:
         vmImage: 'Ubuntu 16.04'
@@ -9,7 +9,7 @@ jobs:
             deploy:
                 steps:
                     - task: AzureWebApp@1
-                      displayName: 'Deploy Azure Web App'
+                      displayName: 'Deploy'
                       inputs:
                           azureSubscription: 'azure-devops-php'
                           appName: 'azure-devops-php'

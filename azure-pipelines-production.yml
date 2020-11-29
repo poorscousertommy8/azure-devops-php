@@ -1,6 +1,6 @@
 jobs:
     - deployment: Deploy
-      displayName: 'Deploy AWS'
+      displayName: 'Deploy to Amazon AWS EC2'
       environment: $
       strategy:
           runOnce:
