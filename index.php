@@ -5,4 +5,4 @@ use Carbon\Carbon;
 
 $date = Carbon::now();
 
-echo sprintf('Hello World it\'s %s', $date->toDayDateTimeString());
+echo sprintf('Hello ITF it\'s %s', $date->toDayDateTimeString());
