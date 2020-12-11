@@ -1,7 +1,7 @@
 jobs:
   - deployment: Deploy
     displayName: 'Deploy to Azure App Service'
-    environment: $
+    environment: 'Development'
     pool:
         vmImage: 'Ubuntu 16.04'
     strategy:

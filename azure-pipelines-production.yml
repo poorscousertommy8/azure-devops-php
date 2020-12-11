@@ -1,7 +1,7 @@
 jobs:
     - deployment: Deploy
       displayName: 'Deploy to Amazon AWS EC2'
-      environment: $
+      environment: 'Production'
       strategy:
           runOnce:
               deploy:
